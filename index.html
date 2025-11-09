@@ -126,8 +126,7 @@
     <header class="w-full bg-gray-900 border-b border-gray-700 py-3 px-6 flex items-center justify-between">
         <div class="flex items-center gap-4">
             <div class="flex items-center gap-3">
-                <img src="logo.png" alt="AAHES Logo"
-                    class="w-11 h-11 object-cover shadow-sm" />
+                <img src="logo.png" alt="AAHES Logo" class="w-11 h-11 object-cover shadow-sm" />
             </div>
             <h1 class="text-xl font-bold text-emerald-400">AAHES Admin Panel</h1>
             <nav id="mainTabs" class="ml-6 flex items-center gap-2">
@@ -455,6 +454,7 @@
         const dataEntrySection = document.getElementById('dataEntrySection');
         const databaseSection = document.getElementById('databaseSection');
         const rolesSection = document.getElementById('rolesSection');
+        const pyqSection = document.getElementById('pyqSection');
 
         const uploadForm = document.getElementById('uploadForm');
         const singleUploadBtn = document.getElementById('singleUploadBtn');
@@ -548,7 +548,7 @@
         function show(el) { el.classList.remove('hidden-el'); }
         function hide(el) { if (!el.classList.contains('hidden-el')) el.classList.add('hidden-el'); }
         function setActiveTab(tabBtn) {
-            [tabDataEntry, tabDatabase, tabRoles].forEach(b => b.classList.remove('active'));
+            [tabDataEntry, tabDatabase, tabRoles, tabPYQ].forEach(b => b.classList.remove('active'));
             tabBtn.classList.add('active');
         }
 
@@ -560,12 +560,14 @@
             show(dataEntrySection);
             hide(databaseSection);
             hide(rolesSection);
+            hide(pyqSection);
         });
         tabDatabase.addEventListener('click', () => {
             setActiveTab(tabDatabase);
             hide(dataEntrySection);
             show(databaseSection);
             hide(rolesSection);
+            hide(pyqSection);
             startRealtimeListener();
             loadAdminsList(); // keep admin list up to date for context
         });
@@ -574,11 +576,10 @@
             hide(dataEntrySection);
             hide(databaseSection);
             show(rolesSection);
+            hide(pyqSection);
             loadAdminsList();
         });
         const tabPYQ = document.getElementById('tabPYQ');
-        const pyqSection = document.getElementById('pyqSection');
-
         tabPYQ.addEventListener('click', () => {
             setActiveTab(tabPYQ);
             hide(dataEntrySection);
@@ -622,6 +623,7 @@
                 show(dataEntrySection);
                 hide(databaseSection);
                 hide(rolesSection);
+                hide(pyqSection);
 
                 // apply role permissions
                 applyRolePermissions();
@@ -1021,6 +1023,7 @@
             hide(dataEntrySection);
             hide(databaseSection);
             hide(rolesSection);
+            hide(pyqSection);
             hide(editModal);
         });
 
@@ -1028,5 +1031,3 @@
 </body>
 
 </html>
-
-
