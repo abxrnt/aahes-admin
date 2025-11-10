@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -13,21 +14,107 @@
     <script src="https://kit.fontawesome.com/a2e0ef7f4b.js" crossorigin="anonymous"></script>
 
     <style>
-        :root { --bg:#0f172a; --card:#111827; --muted:#94a3b8; --accent:#10b981; }
-        html, body { height:100%; }
-        body { font-family:'Poppins',sans-serif; background:linear-gradient(135deg,var(--bg),#000); color:#e5e7eb; margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-        input, textarea, select { background-color:#0f172a; color:#e2e8f0; border:1px solid #334155; transition:all 0.12s ease; }
-        input:focus, textarea:focus, select:focus { border-color:var(--accent); box-shadow:0 0 0 4px rgba(16,185,129,0.08); outline:none; }
-        table { width:100%; border-collapse:collapse; }
-        th, td { padding:8px 10px; font-size:13px; border-bottom:1px solid #172033; text-align:left; }
-        thead th { background:#071025; color:var(--accent); position:sticky; top:0; z-index:1; }
-        tr:hover td { background:rgba(255,255,255,0.01); }
-        .modal-backdrop { background:rgba(1,6,12,0.6); position:fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:60; }
-        .modal-card { width:760px; max-width:calc(100% - 40px); }
-        .hidden-el { display:none; }
-        .nav-tab { cursor:pointer; }
-        .nav-tab.active { background:rgba(255,255,255,0.02); border-bottom:2px solid var(--accent); }
-        @media (max-width:920px) { .two-col { flex-direction:column; gap:12px; } #uploadForm { grid-template-columns:1fr; } }
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --muted: #94a3b8;
+            --accent: #10b981;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg), #000);
+            color: #e5e7eb;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        input,
+        textarea,
+        select {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid #334155;
+            transition: all 0.12s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.08);
+            outline: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px 10px;
+            font-size: 13px;
+            border-bottom: 1px solid #172033;
+            text-align: left;
+        }
+
+        thead th {
+            background: #071025;
+            color: var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .modal-backdrop {
+            background: rgba(1, 6, 12, 0.6);
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 60;
+        }
+
+        .modal-card {
+            width: 760px;
+            max-width: calc(100% - 40px);
+        }
+
+        .hidden-el {
+            display: none;
+        }
+
+        .nav-tab {
+            cursor: pointer;
+        }
+
+        .nav-tab.active {
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        @media (max-width:920px) {
+            .two-col {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            #uploadForm {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -263,52 +350,78 @@
         </section>
 
         <!-- PYQ TAB -->
-<section id="pyqSection" class="hidden-el mt-6">
-    <div class="max-w-6xl mx-auto bg-gray-800 rounded-2xl border border-gray-700 p-4 flex flex-col gap-4">
+        <section id="pyqSection" class="hidden-el mt-6">
+            <div class="max-w-6xl mx-auto bg-gray-800 rounded-2xl border border-gray-700 p-4 flex flex-col gap-4">
 
-        <div class="flex justify-between items-center mb-2">
-            <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2">
-                <i class="fa-solid fa-book-open"></i> PYQs
-            </h3>
-            <button id="showAddPyqForm"
-                class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 flex items-center gap-1">
-                <i class="fa-solid fa-plus"></i> Add New PYQ
-            </button>
-        </div>
+                <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> PYQs
+                </h3>
 
-        <!-- Add PYQ Form (hidden by default) -->
-        <form id="addPyqForm" class="grid grid-cols-5 gap-3 mb-3 hidden-el">
-            <input type="number" id="pyqNumber" placeholder="Qno" class="p-2 rounded-lg text-sm" required />
-            <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
-            <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
-            <input type="url" id="pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm" />
-            <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm" />
-            <div class="col-span-5 flex justify-end gap-2">
-                <button id="cancelAddPyq" class="px-4 py-2 bg-gray-700 rounded-lg text-sm text-white hover:bg-gray-600">Cancel</button>
-                <button id="saveAddPyq" class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600">Add</button>
+                <!-- Add PYQ Form (no question field) -->
+                <form id="pyqForm" class="grid grid-cols-3 gap-3 mb-4">
+                    <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
+                    <input type="number" id="pyqNumber" placeholder="Question Number" class="p-2 rounded-lg text-sm"
+                        required />
+                    <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
+                    <input type="url" id="pyqSol" placeholder="Solution link"
+                        class="p-2 rounded-lg text-sm col-span-1" />
+                    <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm col-span-2" />
+                    <div></div>
+                    <div></div>
+                    <button id="addPyqBtn"
+                        class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 col-span-3">
+                        ➕ Add PYQ
+                    </button>
+                </form>
+
+                <!-- PYQ Table -->
+                <div class="rounded-2xl border border-gray-700 p-2 overflow-x-auto bg-gray-900">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">Subject</th>
+                                <th style="width:10%;">Q.No</th>
+                                <th style="width:10%;">Year</th>
+                                <th style="width:30%;">Solution</th>
+                                <th style="width:30%;">Image</th>
+                                <th style="width:15%;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pyqBody"></tbody>
+                    </table>
+                </div>
             </div>
-        </form>
+        </section>
 
-        <!-- Table -->
-        <div class="rounded-2xl border border-gray-700 p-2 overflow-x-auto bg-gray-900">
-            <table class="min-w-full">
-                <thead>
-                    <tr>
-                        <th style="width:10%;">Img</th>
-                        <th style="width:10%;">Qno</th>
-                        <th style="width:20%;">Sol</th>
-                        <th style="width:30%;">Subject</th>
-                        <th style="width:10%;">Year</th>
-                        <th style="width:20%;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="pyqBody">
-                    <tr><td colspan="6" class="text-gray-400 py-4">No PYQs yet</td></tr>
-                </tbody>
-            </table>
+        <!-- PYQ Edit Modal -->
+        <div id="pyqEditModal" class="modal-backdrop hidden-el">
+            <div class="modal-card bg-gray-900 rounded-2xl p-4">
+                <div class="flex justify-between items-center mb-3">
+                    <h4 class="text-lg text-cyan-400">Edit PYQ</h4>
+                    <button id="closePyqEdit" class="text-gray-400 hover:text-white"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="pyqEditForm" class="grid grid-cols-2 gap-3">
+                    <input type="text" id="edit_pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm"
+                        required />
+                    <input type="number" id="edit_pyqNumber" placeholder="Question Number"
+                        class="p-2 rounded-lg text-sm" required />
+                    <input type="number" id="edit_pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
+                    <textarea id="edit_pyqQuestion" placeholder="Question text"
+                        class="p-2 rounded-lg text-sm col-span-2" rows="3" required></textarea>
+                    <input type="url" id="edit_pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm" />
+                    <input type="url" id="edit_pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm" />
+                    <input type="hidden" id="edit_pyqId" />
+                </form>
+                <div class="mt-3 flex items-center gap-3 justify-end">
+                    <button id="savePyqEdit"
+                        class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600">Save</button>
+                    <button id="cancelPyqEdit"
+                        class="px-4 py-2 bg-gray-700 rounded-lg text-sm text-white hover:bg-gray-600">Cancel</button>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+
 
     </div>
 
@@ -442,34 +555,34 @@
         const pyqQuestion = document.getElementById('pyqQuestion');
         const addPyqBtn = document.getElementById('addPyqBtn');
 
-addPyqBtn.addEventListener('click', async (e) => {
-  e.preventDefault();
-  if (!currentUserEmail) return alert('Please log in first.');
-  if (currentUserRole === 'viewer') return alert('Unauthorized: viewer cannot add PYQs.');
+        addPyqBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (!currentUserEmail) return alert('Please log in first.');
+            if (currentUserRole === 'viewer') return alert('Unauthorized: viewer cannot add PYQs.');
 
-  const pyqObj = {
-    subject: pyqSubject.value.trim(),
-    qno: Number(pyqNumber.value.trim()) || null,
-    year: Number(pyqYear.value.trim()) || null,
-    question: pyqQuestion.value.trim(),
-    sol: pyqSol.value.trim() || '',
-    img: pyqImg.value.trim() || '',
-    createdBy: currentUserEmail,
-    createdAt: Date.now()
-  };
+            const pyqObj = {
+                subject: pyqSubject.value.trim(),
+                qno: Number(pyqNumber.value.trim()) || null,
+                year: Number(pyqYear.value.trim()) || null,
+                sol: pyqSol.value.trim() || '',
+                img: pyqImg.value.trim() || '',
+                createdBy: currentUserEmail,
+                createdAt: Date.now()
+            };
 
-  if (!pyqObj.subject || !pyqObj.qno || !pyqObj.year || !pyqObj.question)
-    return alert('Subject, Qno, Year, and Question are required');
+            if (!pyqObj.subject || !pyqObj.qno || !pyqObj.year)
+                return alert('Subject, Qno, and Year are required');
 
-  try {
-    await addDoc(collection(db, 'pyqs'), pyqObj);
-    alert('✅ PYQ added!');
-    pyqForm.reset();
-  } catch (err) {
-    console.error(err);
-    alert('Failed to add PYQ: ' + err.message);
-  }
-});
+            try {
+                await addDoc(collection(db, 'pyqs'), pyqObj);
+                alert('✅ PYQ added!');
+                pyqForm.reset();
+            } catch (err) {
+                console.error(err);
+                alert('Failed to add PYQ: ' + err.message);
+            }
+        });
+
 
 
         // -------------------------------
@@ -966,199 +1079,168 @@ addPyqBtn.addEventListener('click', async (e) => {
             hide(pyqSection);
             hide(editModal);
         });
-    </script>
-    <!-- PYQ TAB -->
-<section id="pyqSection" class="hidden-el mt-6">
-    <div class="max-w-6xl mx-auto bg-gray-800 rounded-2xl border border-gray-700 p-4 flex flex-col gap-4">
 
-        <div class="flex justify-between items-center mb-2">
-            <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2">
-                <i class="fa-solid fa-book-open"></i> PYQs
-            </h3>
-            <button id="showAddPyqForm"
-                class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 flex items-center gap-1">
-                <i class="fa-solid fa-plus"></i> Add New PYQ
-            </button>
-        </div>
+        const pyqBody = document.getElementById('pyqBody');
+        const pyqSol = document.getElementById('pyqSol');
+        const pyqImg = document.getElementById('pyqImg');
+        const pyqSubject = document.getElementById('pyqSubject');
 
-        <!-- Add PYQ Form (hidden by default) -->
-        <form id="addPyqForm" class="grid grid-cols-5 gap-3 mb-3 hidden-el">
-            <input type="number" id="pyqNumber" placeholder="Qno" class="p-2 rounded-lg text-sm" required />
-            <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
-            <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
-            <input type="url" id="pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm" />
-            <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm" />
-            <div class="col-span-5 flex justify-end gap-2">
-                <button id="cancelAddPyq" class="px-4 py-2 bg-gray-700 rounded-lg text-sm text-white hover:bg-gray-600">Cancel</button>
-                <button id="saveAddPyq" class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600">Add</button>
-            </div>
-        </form>
+        const pyqEditModal = document.getElementById('pyqEditModal');
+        const closePyqEdit = document.getElementById('closePyqEdit');
+        const cancelPyqEdit = document.getElementById('cancelPyqEdit');
+        const savePyqEdit = document.getElementById('savePyqEdit');
 
-        <!-- Table -->
-        <div class="rounded-2xl border border-gray-700 p-2 overflow-x-auto bg-gray-900">
-            <table class="min-w-full">
-                <thead>
-                    <tr>
-                        <th style="width:10%;">Img</th>
-                        <th style="width:10%;">Qno</th>
-                        <th style="width:20%;">Sol</th>
-                        <th style="width:30%;">Subject</th>
-                        <th style="width:10%;">Year</th>
-                        <th style="width:20%;">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="pyqBody">
-                    <tr><td colspan="6" class="text-gray-400 py-4">No PYQs yet</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
+        const edit_pyqId = document.getElementById('edit_pyqId');
+        const edit_pyqSubject = document.getElementById('edit_pyqSubject');
+        const edit_pyqNumber = document.getElementById('edit_pyqNumber');
+        const edit_pyqYear = document.getElementById('edit_pyqYear');
+        const edit_pyqQuestion = document.getElementById('edit_pyqQuestion');
+        const edit_pyqSol = document.getElementById('edit_pyqSol');
+        const edit_pyqImg = document.getElementById('edit_pyqImg');
 
-<script>
-    // PYQ Elements
-    const showAddPyqFormBtn = document.getElementById('showAddPyqForm');
-    const addPyqForm = document.getElementById('addPyqForm');
-    const cancelAddPyq = document.getElementById('cancelAddPyq');
-    const saveAddPyq = document.getElementById('saveAddPyq');
-    const pyqBody = document.getElementById('pyqBody');
+        let allPYQs = [];
 
-    const pyqNumberInput = document.getElementById('pyqNumber');
-    const pyqSubjectInput = document.getElementById('pyqSubject');
-    const pyqYearInput = document.getElementById('pyqYear');
-    const pyqSolInput = document.getElementById('pyqSol');
-    const pyqImgInput = document.getElementById('pyqImg');
-
-    let allPYQs = [];
-
-    // Show/hide form
-    showAddPyqFormBtn.addEventListener('click', () => addPyqForm.classList.remove('hidden-el'));
-    cancelAddPyq.addEventListener('click', (e) => { e.preventDefault(); addPyqForm.classList.add('hidden-el'); addPyqForm.reset(); });
-
-    // Load PYQs from Firestore
-    async function loadPYQs() {
-        const snap = await getDocs(collection(db, 'pyqs'));
-        allPYQs = [];
-        snap.forEach(d => allPYQs.push({ id: d.id, ...d.data() }));
-        renderPYQTable();
-    }
-
-    function renderPYQTable() {
-        if (allPYQs.length === 0) {
-            pyqBody.innerHTML = `<tr><td colspan="6" class="text-gray-400 py-4">No PYQs yet</td></tr>`;
-            return;
+        // Fetch PYQs in real-time
+        function startPyqListener() {
+            const collRef = collection(db, 'pyqs');
+            onSnapshot(collRef, snapshot => {
+                allPYQs = [];
+                snapshot.forEach(s => allPYQs.push({ id: s.id, ...s.data() }));
+                renderPyqTable();
+            });
         }
-        pyqBody.innerHTML = allPYQs.map(p => `
-            <tr data-id="${p.id}">
-                <td>${p.img ? `<a href="${esc(p.img)}" target="_blank"><img src="${esc(p.img)}" class="w-12 h-12 object-cover rounded"></a>` : '-'}</td>
-                <td>${esc(p.qno)}</td>
-                <td>${p.sol ? `<a href="${esc(p.sol)}" target="_blank" class="text-blue-400 underline">Solution</a>` : '-'}</td>
-                <td>${esc(p.subject)}</td>
-                <td>${esc(p.year)}</td>
-                <td>
-                    <button data-id="${p.id}" class="editPyqBtn px-3 py-1 mr-2 bg-emerald-600 rounded text-xs text-white">Edit</button>
-                    <button data-id="${p.id}" class="deletePyqBtn px-3 py-1 bg-red-600 rounded text-xs text-white">Delete</button>
-                </td>
-            </tr>
-        `).join('');
 
-        document.querySelectorAll('.editPyqBtn').forEach(btn => btn.addEventListener('click', onEditPyq));
-        document.querySelectorAll('.deletePyqBtn').forEach(btn => btn.addEventListener('click', onDeletePyq));
-    }
+        // Render PYQ table with sorting by year then qno
+        function renderPyqTable() {
+            if (!allPYQs.length) {
+                pyqBody.innerHTML = `<tr><td colspan="6" class="text-gray-400 py-4">No PYQs found</td></tr>`;
+                return;
+            }
 
-    // Add new PYQ
-    saveAddPyq.addEventListener('click', async (e) => {
-        e.preventDefault();
-        if (!currentUserEmail) return alert('Please log in first.');
-        if (currentUserRole === 'viewer') return alert('Unauthorized');
+            // sort by year (asc) then qno (asc)
+            const sorted = allPYQs.slice().sort((a, b) => {
+                const yearA = Number(a.year) || 0;
+                const yearB = Number(b.year) || 0;
+                if (yearA !== yearB) return yearA - yearB;
 
-        const newPYQ = {
-            qno: Number(pyqNumberInput.value),
-            subject: pyqSubjectInput.value.trim(),
-            year: Number(pyqYearInput.value),
-            sol: pyqSolInput.value.trim(),
-            img: pyqImgInput.value.trim(),
-            createdBy: currentUserEmail,
-            createdAt: Date.now()
-        };
-        if (!newPYQ.qno || !newPYQ.subject || !newPYQ.year || !newPYQ.question) return alert('Qno, Subject, and Year are required');
+                const qnoA = Number(a.qno) || 0;
+                const qnoB = Number(b.qno) || 0;
+                return qnoA - qnoB;
+            });
 
-        try {
-            await addDoc(collection(db, 'pyqs'), newPYQ);
-            alert('✅ PYQ added!');
-            addPyqForm.reset();
-            addPyqForm.classList.add('hidden-el');
-            loadPYQs();
-        } catch (err) {
-            console.error(err);
-            alert('Failed to add PYQ: ' + err.message);
+            pyqBody.innerHTML = sorted.map(p => `
+<tr data-id="${p.id}">
+  <td>${p.subject ?? ''}</td>
+  <td>${p.qno ?? ''}</td>
+  <td>${p.year ?? ''}</td>
+  <td>${p.sol ? `<a href="${p.sol}" target="_blank">Link</a>` : ''}</td>
+  <td>${p.img ? `<a href="${p.img}" target="_blank">Image</a>` : ''}</td>
+  <td>
+    <button data-id="${p.id}" class="editPyqBtn px-3 py-1 mr-2 bg-cyan-600 rounded text-xs text-white">Edit</button>
+    <button data-id="${p.id}" class="deletePyqBtn px-3 py-1 bg-red-600 rounded text-xs text-white">Delete</button>
+  </td>
+</tr>
+`).join('');
+
+            document.querySelectorAll('.editPyqBtn').forEach(b => b.addEventListener('click', onPyqEditClick));
+            document.querySelectorAll('.deletePyqBtn').forEach(b => b.addEventListener('click', onPyqDeleteClick));
         }
-    });
 
-    // Edit PYQ
-    async function onEditPyq(e) {
-        const id = e.currentTarget.getAttribute('data-id');
-        const rec = allPYQs.find(p => p.id === id);
-        if (!rec) return alert('Record not found');
-        
-        // Prefill form
-        pyqNumberInput.value = rec.qno;
-        pyqSubjectInput.value = rec.subject;
-        pyqYearInput.value = rec.year;
-        pyqSolInput.value = rec.sol || '';
-        pyqImgInput.value = rec.img || '';
-        addPyqForm.classList.remove('hidden-el');
 
-        saveAddPyq.textContent = 'Save';
-        
-        saveAddPyq.onclick = async (ev) => {
-            ev.preventDefault();
-            if (!currentUserEmail) return alert('Please log in first.');
+        // Add PYQ
+        addPyqBtn.addEventListener('click', async e => {
+            e.preventDefault();
+            if (!currentUserEmail) return alert('Login first');
+            if (currentUserRole === 'viewer') return alert('Unauthorized');
+
+            const pyqObj = {
+                subject: pyqSubject.value.trim(),
+                qno: Number(pyqNumber.value.trim()),
+                year: Number(pyqYear.value.trim()),
+                question: pyqQuestion.value.trim(),
+                sol: pyqSol.value.trim() || '',
+                img: pyqImg.value.trim() || '',
+                createdBy: currentUserEmail,
+                createdAt: Date.now()
+            };
+            if (!pyqObj.subject || !pyqObj.qno || !pyqObj.year || !pyqObj.question)
+                return alert('All required fields must be filled');
+
+            try {
+                await addDoc(collection(db, 'pyqs'), pyqObj);
+                pyqForm.reset();
+                alert('✅ PYQ added!');
+            } catch (err) {
+                console.error(err);
+                alert('Failed to add PYQ: ' + err.message);
+            }
+        });
+
+        // Edit PYQ
+        function onPyqEditClick(e) {
+            const id = e.currentTarget.dataset.id;
+            const rec = allPYQs.find(p => p.id === id);
+            if (!rec) return alert('Record not found');
+
+            edit_pyqId.value = rec.id;
+            edit_pyqSubject.value = rec.subject;
+            edit_pyqNumber.value = rec.qno ?? '';
+            edit_pyqYear.value = rec.year ?? '';
+            edit_pyqQuestion.value = rec.question;
+            edit_pyqSol.value = rec.sol ?? '';
+            edit_pyqImg.value = rec.img ?? '';
+
+            pyqEditModal.style.display = 'flex';
+            show(pyqEditModal);
+        }
+
+        cancelPyqEdit.addEventListener('click', () => { hide(pyqEditModal); pyqEditModal.style.display = 'none'; });
+        closePyqEdit.addEventListener('click', () => { hide(pyqEditModal); pyqEditModal.style.display = 'none'; });
+
+        savePyqEdit.addEventListener('click', async () => {
+            if (currentUserRole === 'viewer') return alert('Unauthorized');
+            const id = edit_pyqId.value;
             const updated = {
-                qno: Number(pyqNumberInput.value),
-                subject: pyqSubjectInput.value.trim(),
-                year: Number(pyqYearInput.value),
-                sol: pyqSolInput.value.trim(),
-                img: pyqImgInput.value.trim(),
+                subject: edit_pyqSubject.value.trim(),
+                qno: Number(edit_pyqNumber.value.trim()),
+                year: Number(edit_pyqYear.value.trim()),
+                question: edit_pyqQuestion.value.trim(),
+                sol: edit_pyqSol.value.trim() || '',
+                img: edit_pyqImg.value.trim() || '',
                 updatedBy: currentUserEmail,
                 updatedAt: Date.now()
             };
             try {
                 await updateDoc(doc(db, 'pyqs', id), updated);
-                alert('✅ PYQ updated!');
-                addPyqForm.reset();
-                addPyqForm.classList.add('hidden-el');
-                saveAddPyq.textContent = 'Add';
-                loadPYQs();
+                alert('✅ Updated');
+                hide(pyqEditModal);
+                pyqEditModal.style.display = 'none';
             } catch (err) {
                 console.error(err);
                 alert('Update failed: ' + err.message);
             }
-        };
-    }
+        });
 
-    // Delete PYQ
-    async function onDeletePyq(e) {
-        if (!currentUserEmail) return alert('Please log in first.');
-        if (currentUserRole === 'viewer') return alert('Unauthorized');
-        const id = e.currentTarget.getAttribute('data-id');
-        if (!confirm('Delete this PYQ?')) return;
-        try {
-            await deleteDoc(doc(db, 'pyqs', id));
-            alert('✅ Deleted');
-            loadPYQs();
-        } catch (err) {
-            console.error(err);
-            alert('Delete failed: ' + err.message);
+        // Delete PYQ
+        async function onPyqDeleteClick(e) {
+            if (!currentUserEmail) return alert('Login first');
+            if (currentUserRole === 'viewer') return alert('Unauthorized');
+            const id = e.currentTarget.dataset.id;
+            if (!confirm('Delete this PYQ?')) return;
+            try {
+                await deleteDoc(doc(db, 'pyqs', id));
+                alert('✅ Deleted');
+            } catch (err) {
+                console.error(err);
+                alert('Delete failed: ' + err.message);
+            }
         }
-    }
 
-    // Helper
-    function esc(s){ if(s===undefined||s===null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        // Start listener when PYQ tab clicked
+        tabPYQ.addEventListener('click', startPyqListener);
 
-    // Initial load
-    loadPYQs();
-</script>
+    </script>
 
 </body>
+
 </html>
