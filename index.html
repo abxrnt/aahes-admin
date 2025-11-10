@@ -263,30 +263,52 @@
         </section>
 
         <!-- PYQ TAB -->
-        <section id="pyqSection" class="hidden-el mt-6">
-            <div class="max-w-6xl mx-auto bg-gray-800 rounded-2xl border border-gray-700 p-4 flex flex-col gap-4">
-                <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2">
-                    <i class="fa-solid fa-book-open"></i> Add PYQs
-                </h3>
+<section id="pyqSection" class="hidden-el mt-6">
+    <div class="max-w-6xl mx-auto bg-gray-800 rounded-2xl border border-gray-700 p-4 flex flex-col gap-4">
 
-                <form id="pyqForm" class="grid grid-cols-3 gap-3">
-  <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
-  <input type="number" id="pyqNumber" placeholder="Question Number" class="p-2 rounded-lg text-sm" required />
-  <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
+        <div class="flex justify-between items-center mb-2">
+            <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2">
+                <i class="fa-solid fa-book-open"></i> PYQs
+            </h3>
+            <button id="showAddPyqForm"
+                class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> Add New PYQ
+            </button>
+        </div>
 
-  <textarea id="pyqQuestion" placeholder="Question text" class="p-2 rounded-lg text-sm col-span-3" rows="3" required></textarea>
-  
-  <input type="url" id="pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm col-span-1" />
-  <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm col-span-2" />
-
-  <div></div>
-  <div></div>
-  <button id="addPyqBtn" class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 col-span-3">
-    ➕ Add PYQ
-  </button>
-</form>
+        <!-- Add PYQ Form (hidden by default) -->
+        <form id="addPyqForm" class="grid grid-cols-5 gap-3 mb-3 hidden-el">
+            <input type="number" id="pyqNumber" placeholder="Qno" class="p-2 rounded-lg text-sm" required />
+            <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
+            <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
+            <input type="url" id="pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm" />
+            <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm" />
+            <div class="col-span-5 flex justify-end gap-2">
+                <button id="cancelAddPyq" class="px-4 py-2 bg-gray-700 rounded-lg text-sm text-white hover:bg-gray-600">Cancel</button>
+                <button id="saveAddPyq" class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600">Add</button>
             </div>
-        </section>
+        </form>
+
+        <!-- Table -->
+        <div class="rounded-2xl border border-gray-700 p-2 overflow-x-auto bg-gray-900">
+            <table class="min-w-full">
+                <thead>
+                    <tr>
+                        <th style="width:10%;">Img</th>
+                        <th style="width:10%;">Qno</th>
+                        <th style="width:20%;">Sol</th>
+                        <th style="width:30%;">Subject</th>
+                        <th style="width:10%;">Year</th>
+                        <th style="width:20%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pyqBody">
+                    <tr><td colspan="6" class="text-gray-400 py-4">No PYQs yet</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
 
     </div>
 
@@ -945,6 +967,198 @@ addPyqBtn.addEventListener('click', async (e) => {
             hide(editModal);
         });
     </script>
+    <!-- PYQ TAB -->
+<section id="pyqSection" class="hidden-el mt-6">
+    <div class="max-w-6xl mx-auto bg-gray-800 rounded-2xl border border-gray-700 p-4 flex flex-col gap-4">
+
+        <div class="flex justify-between items-center mb-2">
+            <h3 class="text-lg font-semibold text-cyan-400 flex items-center gap-2">
+                <i class="fa-solid fa-book-open"></i> PYQs
+            </h3>
+            <button id="showAddPyqForm"
+                class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 flex items-center gap-1">
+                <i class="fa-solid fa-plus"></i> Add New PYQ
+            </button>
+        </div>
+
+        <!-- Add PYQ Form (hidden by default) -->
+        <form id="addPyqForm" class="grid grid-cols-5 gap-3 mb-3 hidden-el">
+            <input type="number" id="pyqNumber" placeholder="Qno" class="p-2 rounded-lg text-sm" required />
+            <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
+            <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
+            <input type="url" id="pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm" />
+            <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm" />
+            <div class="col-span-5 flex justify-end gap-2">
+                <button id="cancelAddPyq" class="px-4 py-2 bg-gray-700 rounded-lg text-sm text-white hover:bg-gray-600">Cancel</button>
+                <button id="saveAddPyq" class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600">Add</button>
+            </div>
+        </form>
+
+        <!-- Table -->
+        <div class="rounded-2xl border border-gray-700 p-2 overflow-x-auto bg-gray-900">
+            <table class="min-w-full">
+                <thead>
+                    <tr>
+                        <th style="width:10%;">Img</th>
+                        <th style="width:10%;">Qno</th>
+                        <th style="width:20%;">Sol</th>
+                        <th style="width:30%;">Subject</th>
+                        <th style="width:10%;">Year</th>
+                        <th style="width:20%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pyqBody">
+                    <tr><td colspan="6" class="text-gray-400 py-4">No PYQs yet</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    // PYQ Elements
+    const showAddPyqFormBtn = document.getElementById('showAddPyqForm');
+    const addPyqForm = document.getElementById('addPyqForm');
+    const cancelAddPyq = document.getElementById('cancelAddPyq');
+    const saveAddPyq = document.getElementById('saveAddPyq');
+    const pyqBody = document.getElementById('pyqBody');
+
+    const pyqNumberInput = document.getElementById('pyqNumber');
+    const pyqSubjectInput = document.getElementById('pyqSubject');
+    const pyqYearInput = document.getElementById('pyqYear');
+    const pyqSolInput = document.getElementById('pyqSol');
+    const pyqImgInput = document.getElementById('pyqImg');
+
+    let allPYQs = [];
+
+    // Show/hide form
+    showAddPyqFormBtn.addEventListener('click', () => addPyqForm.classList.remove('hidden-el'));
+    cancelAddPyq.addEventListener('click', (e) => { e.preventDefault(); addPyqForm.classList.add('hidden-el'); addPyqForm.reset(); });
+
+    // Load PYQs from Firestore
+    async function loadPYQs() {
+        const snap = await getDocs(collection(db, 'pyqs'));
+        allPYQs = [];
+        snap.forEach(d => allPYQs.push({ id: d.id, ...d.data() }));
+        renderPYQTable();
+    }
+
+    function renderPYQTable() {
+        if (allPYQs.length === 0) {
+            pyqBody.innerHTML = `<tr><td colspan="6" class="text-gray-400 py-4">No PYQs yet</td></tr>`;
+            return;
+        }
+        pyqBody.innerHTML = allPYQs.map(p => `
+            <tr data-id="${p.id}">
+                <td>${p.img ? `<a href="${esc(p.img)}" target="_blank"><img src="${esc(p.img)}" class="w-12 h-12 object-cover rounded"></a>` : '-'}</td>
+                <td>${esc(p.qno)}</td>
+                <td>${p.sol ? `<a href="${esc(p.sol)}" target="_blank" class="text-blue-400 underline">Solution</a>` : '-'}</td>
+                <td>${esc(p.subject)}</td>
+                <td>${esc(p.year)}</td>
+                <td>
+                    <button data-id="${p.id}" class="editPyqBtn px-3 py-1 mr-2 bg-emerald-600 rounded text-xs text-white">Edit</button>
+                    <button data-id="${p.id}" class="deletePyqBtn px-3 py-1 bg-red-600 rounded text-xs text-white">Delete</button>
+                </td>
+            </tr>
+        `).join('');
+
+        document.querySelectorAll('.editPyqBtn').forEach(btn => btn.addEventListener('click', onEditPyq));
+        document.querySelectorAll('.deletePyqBtn').forEach(btn => btn.addEventListener('click', onDeletePyq));
+    }
+
+    // Add new PYQ
+    saveAddPyq.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (!currentUserEmail) return alert('Please log in first.');
+        if (currentUserRole === 'viewer') return alert('Unauthorized');
+
+        const newPYQ = {
+            qno: Number(pyqNumberInput.value),
+            subject: pyqSubjectInput.value.trim(),
+            year: Number(pyqYearInput.value),
+            sol: pyqSolInput.value.trim(),
+            img: pyqImgInput.value.trim(),
+            createdBy: currentUserEmail,
+            createdAt: Date.now()
+        };
+        if (!newPYQ.qno || !newPYQ.subject || !newPYQ.year || !newPYQ.question) return alert('Qno, Subject, and Year are required');
+
+        try {
+            await addDoc(collection(db, 'pyqs'), newPYQ);
+            alert('✅ PYQ added!');
+            addPyqForm.reset();
+            addPyqForm.classList.add('hidden-el');
+            loadPYQs();
+        } catch (err) {
+            console.error(err);
+            alert('Failed to add PYQ: ' + err.message);
+        }
+    });
+
+    // Edit PYQ
+    async function onEditPyq(e) {
+        const id = e.currentTarget.getAttribute('data-id');
+        const rec = allPYQs.find(p => p.id === id);
+        if (!rec) return alert('Record not found');
+        
+        // Prefill form
+        pyqNumberInput.value = rec.qno;
+        pyqSubjectInput.value = rec.subject;
+        pyqYearInput.value = rec.year;
+        pyqSolInput.value = rec.sol || '';
+        pyqImgInput.value = rec.img || '';
+        addPyqForm.classList.remove('hidden-el');
+
+        saveAddPyq.textContent = 'Save';
+        
+        saveAddPyq.onclick = async (ev) => {
+            ev.preventDefault();
+            if (!currentUserEmail) return alert('Please log in first.');
+            const updated = {
+                qno: Number(pyqNumberInput.value),
+                subject: pyqSubjectInput.value.trim(),
+                year: Number(pyqYearInput.value),
+                sol: pyqSolInput.value.trim(),
+                img: pyqImgInput.value.trim(),
+                updatedBy: currentUserEmail,
+                updatedAt: Date.now()
+            };
+            try {
+                await updateDoc(doc(db, 'pyqs', id), updated);
+                alert('✅ PYQ updated!');
+                addPyqForm.reset();
+                addPyqForm.classList.add('hidden-el');
+                saveAddPyq.textContent = 'Add';
+                loadPYQs();
+            } catch (err) {
+                console.error(err);
+                alert('Update failed: ' + err.message);
+            }
+        };
+    }
+
+    // Delete PYQ
+    async function onDeletePyq(e) {
+        if (!currentUserEmail) return alert('Please log in first.');
+        if (currentUserRole === 'viewer') return alert('Unauthorized');
+        const id = e.currentTarget.getAttribute('data-id');
+        if (!confirm('Delete this PYQ?')) return;
+        try {
+            await deleteDoc(doc(db, 'pyqs', id));
+            alert('✅ Deleted');
+            loadPYQs();
+        } catch (err) {
+            console.error(err);
+            alert('Delete failed: ' + err.message);
+        }
+    }
+
+    // Helper
+    function esc(s){ if(s===undefined||s===null) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    // Initial load
+    loadPYQs();
+</script>
+
 </body>
 </html>
-
