@@ -270,18 +270,21 @@
                 </h3>
 
                 <form id="pyqForm" class="grid grid-cols-3 gap-3">
-                    <input type="number" id="pyqNumber" placeholder="Question Number" class="p-2 rounded-lg text-sm"
-                        required />
-                    <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
-                    <textarea id="pyqQuestion" placeholder="Question text" class="p-2 rounded-lg text-sm col-span-3"
-                        rows="3" required></textarea>
-                    <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
+  <input type="text" id="pyqSubject" placeholder="Subject" class="p-2 rounded-lg text-sm" required />
+  <input type="number" id="pyqNumber" placeholder="Question Number" class="p-2 rounded-lg text-sm" required />
+  <input type="number" id="pyqYear" placeholder="Year" class="p-2 rounded-lg text-sm" required />
 
-                    <div></div>
-                    <div></div>
-                    <button id="addPyqBtn"
-                        class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600">➕ Add PYQ</button>
-                </form>
+  <textarea id="pyqQuestion" placeholder="Question text" class="p-2 rounded-lg text-sm col-span-3" rows="3" required></textarea>
+  
+  <input type="url" id="pyqSol" placeholder="Solution link" class="p-2 rounded-lg text-sm col-span-1" />
+  <input type="url" id="pyqImg" placeholder="Image link" class="p-2 rounded-lg text-sm col-span-2" />
+
+  <div></div>
+  <div></div>
+  <button id="addPyqBtn" class="px-4 py-2 bg-cyan-500 rounded-lg text-sm text-white hover:bg-cyan-600 col-span-3">
+    ➕ Add PYQ
+  </button>
+</form>
             </div>
         </section>
 
@@ -417,30 +420,34 @@
         const pyqQuestion = document.getElementById('pyqQuestion');
         const addPyqBtn = document.getElementById('addPyqBtn');
 
-        addPyqBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
-            if (!currentUserEmail) return alert('Please log in first.');
-            if (currentUserRole === 'viewer') return alert('Unauthorized: viewer cannot add PYQs.');
+addPyqBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  if (!currentUserEmail) return alert('Please log in first.');
+  if (currentUserRole === 'viewer') return alert('Unauthorized: viewer cannot add PYQs.');
 
-            const pyqObj = {
-                qno: Number(pyqNumber.value.trim()) || null,
-                year: Number(pyqYear.value.trim()) || null,
-                subject: pyqSubject.value.trim(),
-                question: pyqQuestion.value.trim(),
-                createdBy: currentUserEmail,
-                createdAt: Date.now()
-            };
-            if (!pyqObj.qno || !pyqObj.year || !pyqObj.question) return alert('All fields are required');
+  const pyqObj = {
+    subject: pyqSubject.value.trim(),
+    qno: Number(pyqNumber.value.trim()) || null,
+    year: Number(pyqYear.value.trim()) || null,
+    question: pyqQuestion.value.trim(),
+    sol: pyqSol.value.trim() || '',
+    img: pyqImg.value.trim() || '',
+    createdBy: currentUserEmail,
+    createdAt: Date.now()
+  };
 
-            try {
-                await addDoc(collection(db, 'pyqs'), pyqObj);
-                alert('✅ PYQ added!');
-                pyqForm.reset();
-            } catch (err) {
-                console.error(err);
-                alert('Failed to add PYQ: ' + err.message);
-            }
-        });
+  if (!pyqObj.subject || !pyqObj.qno || !pyqObj.year || !pyqObj.question)
+    return alert('Subject, Qno, Year, and Question are required');
+
+  try {
+    await addDoc(collection(db, 'pyqs'), pyqObj);
+    alert('✅ PYQ added!');
+    pyqForm.reset();
+  } catch (err) {
+    console.error(err);
+    alert('Failed to add PYQ: ' + err.message);
+  }
+});
 
 
         // -------------------------------
@@ -940,3 +947,4 @@
     </script>
 </body>
 </html>
+
